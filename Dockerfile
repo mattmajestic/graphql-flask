@@ -19,5 +19,5 @@ EXPOSE 5000
 # Set environment variable to avoid buffering stdout/stderr
 ENV PYTHONUNBUFFERED=1
 
-# Command to start the Flask app
-CMD ["python", "app.py"]
+# Command to start the Flask app using gunicorn
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5000"]

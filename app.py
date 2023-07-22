@@ -28,11 +28,17 @@ schema = graphene.Schema(query=Query)
 app = Flask(__name__)
 
 # Define the GraphQL endpoint
+@app.route('/', methods=['GET'])
+def home():
+    return "welcome home"
+
+# Define the GraphQL endpoint
 @app.route('/graphql', methods=['POST'])
 def graphql_server():
     data = json.loads(request.data.decode('utf-8'))
     result = schema.execute(data['query'])
     return jsonify(result.data)
+
 
 if __name__ == '__main__':
     app.run()
